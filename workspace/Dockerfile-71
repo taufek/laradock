@@ -561,5 +561,44 @@ USER root
 RUN apt-get clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
+# Custom
+# RUN apt-get update
+# RUN apt-get install -y vim wget unzip
+#
+# RUN apt-get -y install libxpm4 libxrender1 libgtk2.0-0 libnss3 libgconf-2-4
+# RUN apt-get -y install libnss3-dev libxi6 libgconf-2-4
+# RUN apt-get -y install chromium-browser
+# RUN apt-get -y install xvfb gtk2-engines-pixbuf
+# RUN apt-get -y install xfonts-cyrillic xfonts-100dpi xfonts-75dpi xfonts-base xfonts-scalable
+# RUN apt-get -y install imagemagick x11-apps
+
+
+RUN add-apt-repository ppa:ondrej/php
+RUN apt-get update
+RUN apt-get -y install zip
+RUN apt-get install -y vim wget unzip
+RUN apt-get -y install php7.1 php7.1-xml
+RUN apt-get -y install php-mcrypt php-gd php-mbstring php-zip php-curl
+
+RUN apt-get -y install xdg-utils
+RUN apt-get -y install libxpm4 libxrender1 libgtk2.0-0 libnss3 libgconf-2-4
+RUN apt-get -y install xvfb gtk2-engines-pixbuf
+RUN apt-get -y install xfonts-cyrillic xfonts-100dpi xfonts-75dpi xfonts-base xfonts-scalable
+RUN apt-get -y install imagemagick x11-apps
+
+RUN wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+RUN dpkg -i --force-depends google-chrome-stable_current_amd64.deb
+RUN apt-get -y -f install
+RUN dpkg -i --force-depends google-chrome-stable_current_amd64.deb
+RUN rm google-chrome-stable_current_amd64.deb
+
+RUN wget https://chromedriver.storage.googleapis.com/2.31/chromedriver_linux64.zip
+RUN unzip chromedriver_linux64.zip
+RUN mv chromedriver /bin/
+RUN rm chromedriver_linux64.zip
+
+RUN apt-get install -y php7.1-intl
+
 # Set default work directory
 WORKDIR /var/www
+
