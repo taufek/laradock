@@ -9,6 +9,22 @@ services:
       volumes:
         - ${APPLICATION}:/var/www
 
+### Pipeline ####
+    pipeline:
+      build:
+        context: ./pipeline
+        dockerfile: "Dockerfile"
+      volumes_from:
+        - applications
+      extra_hosts:
+        - "dockerhost:${DOCKER_HOST_IP}"
+      ports:
+        - "${WORKSPACE_SSH_PORT}:22"
+      tty: true
+      networks:
+        - frontend
+        - backend
+
 ### Workspace Utilities Container ###########################
 
     workspace:
