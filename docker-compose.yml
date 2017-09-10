@@ -9,6 +9,22 @@ services:
       volumes:
         - ${APPLICATION}:/var/www
 
+### Xenial ####
+    xenial:
+      build:
+        context: ./xenial
+        dockerfile: "Dockerfile"
+      volumes_from:
+        - applications
+      extra_hosts:
+        - "dockerhost:${DOCKER_HOST_IP}"
+      ports:
+        - "${WORKSPACE_SSH_PORT}:22"
+      tty: true
+      networks:
+        - frontend
+        - backend
+
 ### Pipeline ####
     pipeline:
       build:
