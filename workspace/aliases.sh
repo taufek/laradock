@@ -33,6 +33,8 @@ alias cdump="composer dump-autoload -o"
 alias composer:dump="composer dump-autoload -o"
 alias db:reset="php artisan migrate:reset && php artisan migrate --seed"
 alias migrate="php artisan migrate"
+alias fresh="php artisan migrate:fresh"
+alias refresh="php artisan migrate:refresh"
 alias seed="php artisan:seed"
 alias phpunit="./vendor/bin/phpunit"
 
@@ -56,6 +58,8 @@ alias git-revert="git reset --hard && git clean -df"
 alias gs="git status"
 alias whoops="git reset --hard && git clean -df"
 
+# Xvfb
+alias xvfb="Xvfb -ac :0 -screen 0 1280x2048x16 &"
 
 # Create a new directory and enter it
 function mkd() {
