@@ -635,6 +635,7 @@ RUN apt-get clean && \
 
 
 RUN add-apt-repository ppa:ondrej/php
+RUN add-apt-repository ppa:fkrull/deadsnakes
 RUN apt-get update
 RUN apt-get -y install zip
 RUN apt-get install -y vim wget unzip
@@ -659,6 +660,8 @@ RUN mv chromedriver /bin/
 RUN rm chromedriver_linux64.zip
 
 RUN apt-get install -y php7.1-intl
+
+RUN apt-get install python2.7
 
 # Set default work directory
 WORKDIR /var/www
