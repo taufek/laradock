@@ -86,6 +86,8 @@ alias reload="source ~/.aliases && echo \"$COL_GREEN ==> Aliases Reloaded... $CO
 alias run="npm run"
 alias tree="xtree"
 
+alias serve="php artisan serve &"
+
 # requires installation of 'https://www.npmjs.com/package/npms-cli'
 alias npms="npms search"
 # requires installation of 'https://www.npmjs.com/package/package-menu-cli'
