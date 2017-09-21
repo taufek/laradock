@@ -37,7 +37,8 @@ alias fresh="php artisan migrate:fresh"
 alias refresh="php artisan migrate:refresh"
 alias seed="php artisan:seed"
 alias phpunit="./vendor/bin/phpunit"
-alias serve="php artisan serve &"
+alias serve="php artisan serve --quiet &"
+alias dusk="php artisan dusk"
 
 # requires installation of 'https://www.npmjs.com/package/npms-cli'
 alias npms="npms search"
