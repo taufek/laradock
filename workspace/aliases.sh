@@ -88,6 +88,9 @@ alias tree="xtree"
 
 alias serve="php artisan serve &"
 
+alias serve="php artisan serve --quiet &"
+alias dusk="php artisan dusk"
+
 # requires installation of 'https://www.npmjs.com/package/npms-cli'
 alias npms="npms search"
 # requires installation of 'https://www.npmjs.com/package/package-menu-cli'
