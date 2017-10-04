@@ -108,6 +108,9 @@ alias git-revert="git reset --hard && git clean -df"
 alias gs="git status"
 alias whoops="git reset --hard && git clean -df"
 
+# Xvfb
+alias xvfb="Xvfb -ac :0 -screen 0 1024x768x16 &"
+
 # Create a new directory and enter it
 function mkd() {
     mkdir -p "$@" && cd "$@"
