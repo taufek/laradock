@@ -6,8 +6,8 @@ services:
 
     applications:
       image: tianon/true
-      volumes:
-        - ${APPLICATION}:/var/www
+      # volumes:
+      #   - ${APPLICATION}:/var/www
 
 ### Xenial ####
     xenial:
