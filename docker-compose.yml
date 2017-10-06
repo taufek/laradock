@@ -44,6 +44,7 @@ services:
 ### Workspace Utilities Container ###########################
 
     workspace:
+      image: ${WORKSPACE_IMAGE_NAME}
       build:
         context: ./workspace
         args:
