@@ -69,7 +69,7 @@ alias migrate="php artisan migrate"
 alias refresh="php artisan migrate:refresh"
 alias rollback="php artisan migrate:rollback"
 alias seed="php artisan:seed"
-alias serve="php artisan serve --quiet &"
+alias serve="php artisan serve --env=dusk.local --quiet &"
 
 alias phpunit="./vendor/bin/phpunit"
 alias pu="phpunit"
