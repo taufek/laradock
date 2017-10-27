@@ -266,7 +266,7 @@ RUN if [ ${INSTALL_NODE} = true ]; then \
         nvm install ${NODE_VERSION} && \
         nvm use ${NODE_VERSION} && \
         nvm alias ${NODE_VERSION} && \
-        npm install -g gulp bower vue-cli \
+        npm install -g gulp bower vue-cli grunt-cli webpack\
 ;fi
 
 # Wouldn't execute when added to the RUN statement in the above block
@@ -658,7 +658,8 @@ ENV INSTALL_GEM ${INSTALL_GEM}
 
 RUN if [ ${INSTALL_GEM} = true ]; then \
   apt-get update -yqq && \
-  apt-get -y install rubygems build-essential ruby-dev \
+  apt-get -y install rubygems build-essential ruby-dev && \
+  gem install sass --no-user-install \
 ;fi
 
 #
