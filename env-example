@@ -30,6 +30,7 @@ PHP_INTERPRETER=php-fpm
 ### WORKSPACE ##########################################################################################################
 
 WORKSPACE_IMAGE_NAME=laradock_workspace
+WORKSPACE_INSTALL_GEM=false
 WORKSPACE_INSTALL_XDEBUG=false
 WORKSPACE_INSTALL_LDAP=false
 WORKSPACE_INSTALL_SOAP=false

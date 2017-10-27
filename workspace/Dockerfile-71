@@ -648,6 +648,19 @@ RUN if [ ${INSTALL_DUSK_DEPS} = true ]; then \
   && rm chromedriver_linux64.zip \
 ;fi
 
+#####################################
+# GEM:
+#####################################
+USER root
+
+ARG INSTALL_GEM=false
+ENV INSTALL_GEM ${INSTALL_GEM}
+
+RUN if [ ${INSTALL_GEM} = true ]; then \
+  apt-get update -yqq && \
+  apt-get -y install rubygems build-essential ruby-dev \
+;fi
+
 #
 #--------------------------------------------------------------------------
 # Final Touch
