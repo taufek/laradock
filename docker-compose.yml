@@ -24,6 +24,7 @@ services:
       networks:
         - frontend
         - backend
+      working_dir: ${NODEJS_WORK_DIR}
 
 ### Xenial ####
     xenial:

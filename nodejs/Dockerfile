@@ -8,6 +8,6 @@ RUN npm install -g gulp bower vue-cli grunt-cli webpack jest
 
 RUN npm rebuild node-sass --force
 
-WORKDIR /var/www/frontend
+WORKDIR /app
 
 CMD [ "npm", "start" ]
