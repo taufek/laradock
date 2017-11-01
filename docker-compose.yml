@@ -9,6 +9,21 @@ services:
       # volumes:
       #   - ${APPLICATION}:/var/www
 
+### Laravel-Ubuntu ####
+    laravel-ubuntu:
+      build:
+        context: ./laravel-ubuntu
+        dockerfile: "Dockerfile"
+      entrypoint: /root/entrypoint.sh
+      ports:
+        - '80:80'
+      volumes_from:
+        - applications
+      volumes:
+        - ./logs/laravel-ubuntu/:/var/log/nginx
+        - ./laravel-ubuntu/sites/:/etc/nginx/sites-enabled
+        - ./laravel-ubuntu/entrypoint.sh:/root/entrypoint.sh
+
 ### NodeJs ####
     nodejs:
       build:
