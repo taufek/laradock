@@ -117,6 +117,8 @@ services:
         dockerfile: "Dockerfile-${PHP_VERSION}"
       volumes_from:
         - applications
+      volumes:
+        - "${HOME}/.ssh/taufekpbww_id_rsa:/root/.ssh/id_rsa"
       extra_hosts:
         - "dockerhost:${DOCKER_HOST_IP}"
       ports:
