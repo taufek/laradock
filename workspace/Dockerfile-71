@@ -278,7 +278,7 @@ RUN if [ ${INSTALL_NODE} = true ]; then \
         nvm install ${NODE_VERSION} && \
         nvm use ${NODE_VERSION} && \
         nvm alias ${NODE_VERSION} && \
-        npm install -g gulp bower vue-cli grunt-cli webpack jest create-react-app \
+        npm install -g gulp bower vue-cli grunt-cli webpack jest create-react-app forever \
 ;fi
 
 # Wouldn't execute when added to the RUN statement in the above block
@@ -645,6 +645,18 @@ RUN if [ ${INSTALL_PG_CLIENT} = true ]; then \
     # Install the pgsql clint
     apt-get update -yqq && \
     apt-get -y install postgresql-client \
+;fi
+
+#####################################
+# MySQL Client
+#####################################
+USER root
+ARG INSTALL_MYSQL_CLIENT=false
+ENV INSTALL_MYSQL_CLIENT ${INSTALL_MYSQL_CLIENT}
+RUN if [ ${INSTALL_MYSQL_CLIENT} = true ]; then \
+    # Install the pgsql clint
+    apt-get update -yqq && \
+    apt-get -y install mysql-client \
 ;fi
 
 #####################################

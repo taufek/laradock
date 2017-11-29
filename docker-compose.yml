@@ -31,8 +31,8 @@ services:
         dockerfile: "Dockerfile"
       environment:
         - NODE_ENV=development
-      ports:
-        - '3000:3000'
+      # ports:
+      #   - '3000:3000'
       volumes_from:
         - applications
       tty: true
@@ -108,6 +108,7 @@ services:
           - INSTALL_TERRAFORM=${WORKSPACE_INSTALL_TERRAFORM}
           - INSTALL_DUSK_DEPS=${WORKSPACE_INSTALL_DUSK_DEPS}
           - INSTALL_PG_CLIENT=${WORKSPACE_INSTALL_PG_CLIENT}
+          - INSTALL_MYSQL_CLIENT=${WORKSPACE_INSTALL_MYSQL_CLIENT}
           - INSTALL_GEM=${WORKSPACE_INSTALL_GEM}
           - PUID=${WORKSPACE_PUID}
           - PGID=${WORKSPACE_PGID}
