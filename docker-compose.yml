@@ -265,7 +265,7 @@ services:
       build: ./hhvm
       volumes_from:
         - applications
-      volumes:
+      # volumes:
         # - ${APPLICATION}:/var/www
       expose:
         - "9000"
