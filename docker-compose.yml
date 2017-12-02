@@ -17,12 +17,13 @@ services:
       entrypoint: /root/entrypoint.sh
       ports:
         - '80:80'
-      volumes_from:
-        - applications
+      # volumes_from:
+      #   - applications
       volumes:
         - ./logs/laravel-ubuntu/:/var/log/nginx
         - ./laravel-ubuntu/sites/:/etc/nginx/sites-enabled
         - ./laravel-ubuntu/entrypoint.sh:/root/entrypoint.sh
+        - ${APPLICATION}:/var/www
 
 ### NodeJs ####
     nodejs:
@@ -31,10 +32,10 @@ services:
         dockerfile: "Dockerfile"
       environment:
         - NODE_ENV=development
-      # ports:
-      #   - '3000:3000'
-      volumes_from:
-        - applications
+      # volumes_from:
+      #   - applications
+      volumes:
+        - ${APPLICATION}:/var/www
       tty: true
       networks:
         - frontend
@@ -46,8 +47,10 @@ services:
       build:
         context: ./xenial
         dockerfile: "Dockerfile"
-      volumes_from:
-        - applications
+      # volumes_from:
+      #   - applications
+      volumes:
+        - ${APPLICATION}:/var/www
       extra_hosts:
         - "dockerhost:${DOCKER_HOST_IP}"
       ports:
@@ -62,8 +65,11 @@ services:
       build:
         context: ./pipeline
         dockerfile: "Dockerfile"
-      volumes_from:
-        - applications
+      # volumes_from:
+      #   - applications
+      #   - ${APPLICATION}:/var/www
+      volumes:
+        - ${APPLICATION}:/var/www
       extra_hosts:
         - "dockerhost:${DOCKER_HOST_IP}"
       ports:
@@ -119,10 +125,11 @@ services:
           - BLACKFIRE_CLIENT_ID=${BLACKFIRE_CLIENT_ID}
           - BLACKFIRE_CLIENT_TOKEN=${BLACKFIRE_CLIENT_TOKEN}
         dockerfile: "Dockerfile-${PHP_VERSION}"
-      volumes_from:
-        - applications
+      # volumes_from:
+      #   - applications
       volumes:
         - "${HOME}/.ssh/taufekpbww_id_rsa:/root/.ssh/id_rsa"
+        - ${APPLICATION}:/var/www
       extra_hosts:
         - "dockerhost:${DOCKER_HOST_IP}"
       ports:
@@ -161,10 +168,11 @@ services:
           - INSTALL_IMAGE_OPTIMIZERS=${PHP_FPM_INSTALL_IMAGE_OPTIMIZERS}
           - INSTALL_IMAGEMAGICK=${PHP_FPM_INSTALL_IMAGEMAGICK}
         dockerfile: "Dockerfile-${PHP_VERSION}"
-      volumes_from:
-        - applications
+      # volumes_from:
+      #   - applications
       volumes:
         - ./php-fpm/php${PHP_VERSION}.ini:/usr/local/etc/php/php.ini
+        - ${APPLICATION}:/var/www
       expose:
         - "9000"
       depends_on:
@@ -184,8 +192,10 @@ services:
         dockerfile: "Dockerfile-${PHP_VERSION}"
         args:
           - INSTALL_PGSQL=${PHP_WORKER_INSTALL_PGSQL}
-      volumes_from:
-        - applications
+      # volumes_from:
+      #   - applications
+      volumes:
+        - ${APPLICATION}:/var/www
       depends_on:
         - workspace
       extra_hosts:
@@ -201,9 +211,10 @@ services:
         args:
           - PHP_UPSTREAM_CONTAINER=${NGINX_PHP_UPSTREAM_CONTAINER}
           - PHP_UPSTREAM_PORT=${NGINX_PHP_UPSTREAM_PORT}
-      volumes_from:
-        - applications
+      # volumes_from:
+      #   - applications
       volumes:
+        - ${APPLICATION}:/var/www
         - ${NGINX_HOST_LOG_PATH}:/var/log/nginx
         - ${NGINX_SITES_PATH}:/etc/nginx/sites-available
       ports:
@@ -236,9 +247,10 @@ services:
           - PHP_UPSTREAM_CONTAINER=${APACHE_PHP_UPSTREAM_CONTAINER}
           - PHP_UPSTREAM_PORT=${APACHE_PHP_UPSTREAM_PORT}
           - PHP_UPSTREAM_TIMEOUT=${APACHE_PHP_UPSTREAM_TIMEOUT}
-      volumes_from:
-        - applications
+      # volumes_from:
+      #   - applications
       volumes:
+        - ${APPLICATION}:/var/www
         - ${APACHE_HOST_LOG_PATH}:/var/log/apache2
         - ${APACHE_SITES_PATH}:/etc/apache2/sites-available
       ports:
@@ -254,8 +266,10 @@ services:
 
     hhvm:
       build: ./hhvm
-      volumes_from:
-        - applications
+      # volumes_from:
+      #   - applications
+      volumes:
+        - ${APPLICATION}:/var/www
       expose:
         - "9000"
       depends_on:
@@ -744,8 +758,10 @@ services:
     aws:
       build:
         context: ./aws
-      volumes_from:
-        - applications
+      # volumes_from:
+      #   - applications
+      volumes:
+        - ${APPLICATION}:/var/www
       depends_on:
         - workspace
       tty: true

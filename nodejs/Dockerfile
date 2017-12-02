@@ -1,12 +1,12 @@
-FROM node:boron
+FROM node:9
 
 RUN apt-get update -yqq && \
   apt-get -y install rubygems build-essential ruby-dev && \
   gem install sass --no-user-install
 
-RUN npm install -g gulp bower vue-cli grunt-cli webpack jest node-sass
+RUN npm install -g gulp vue-cli grunt-cli webpack jest jest-cli
 
-RUN npm rebuild node-sass --force
+# RUN npm rebuild node-sass --force
 
 WORKDIR /app
 
