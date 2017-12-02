@@ -6,8 +6,6 @@ services:
 
     applications:
       image: tianon/true
-      # volumes:
-      #   - ${APPLICATION}:/var/www
 
 ### Laravel-Ubuntu ####
     laravel-ubuntu:
@@ -567,7 +565,7 @@ services:
       ports:
         - "5050:5050"
       volumes:
-        - ${DATA_SAVE_PATH}/pgadmin-backup:/var/lib/pgadmin4/data/storage/pgadmin4
+        - ${DATA_SAVE_PATH}/pgadmin-backup:/var/lib/pgadmin/storage/pgadmin4
       depends_on:
         - postgres
       networks:
