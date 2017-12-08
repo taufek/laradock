@@ -766,8 +766,6 @@ services:
 ### Networks Setup ############################################
 
 networks:
-  default:
-    driver: "bridge"
   frontend:
     driver: "bridge"
   backend:
