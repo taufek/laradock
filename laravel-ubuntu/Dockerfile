@@ -54,3 +54,14 @@ ADD nginx.conf /etc/nginx/
 
 RUN usermod -o -u 1000 www-data
 
+RUN curl -sL https://deb.nodesource.com/setup_8.x | bash -
+
+RUN apt-get update -yqq && \
+  apt-get -y install rubygems build-essential ruby-dev && \
+  gem install sass --no-user-install
+
+RUN apt-get install -y nodejs
+
+RUN npm install -y -g gulp vue-cli grunt-cli webpack jest jest-cli
+
+RUN npm rebuild node-sass --force

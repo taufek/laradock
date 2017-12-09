@@ -26,19 +26,21 @@ services:
 ### NodeJs ####
     nodejs:
       build:
-        context: ./nodejs
+        # context: ./nodejs
+        context: ./laravel-ubuntu
         dockerfile: "Dockerfile"
       environment:
         - NODE_ENV=development
       volumes_from:
         - applications
-      # volumes:
-      #   - ${APPLICATION}:/var/www
+      volumes:
+        - ./nodejs/entrypoint.sh:/entrypoint.sh
       tty: true
       networks:
         - frontend
         - backend
       working_dir: ${NODEJS_WORK_DIR}
+      entrypoint: bash -c "/entrypoint.sh"
 
 ### Xenial ####
     xenial:
