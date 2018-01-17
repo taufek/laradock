@@ -56,8 +56,14 @@ CHANGE_SOURCE=false
 # Containers Customization
 ###########################################################
 
+### NODEJS #############################################################################################################
+
+NODEJS_WORK_DIR=/var/www/frontend-app
+
 ### WORKSPACE ##########################################################################################################
 
+WORKSPACE_IMAGE_NAME=laradock_workspace
+WORKSPACE_INSTALL_GEM=false
 WORKSPACE_INSTALL_XDEBUG=false
 WORKSPACE_INSTALL_LDAP=false
 WORKSPACE_INSTALL_SOAP=false
@@ -87,6 +93,7 @@ WORKSPACE_INSTALL_TERRAFORM=false
 WORKSPACE_INSTALL_DUSK_DEPS=false
 WORKSPACE_INSTALL_PG_CLIENT=false
 WORKSPACE_INSTALL_SWOOLE=false
+WORKSPACE_INSTALL_MYSQL_CLIENT=false
 WORKSPACE_PUID=1000
 WORKSPACE_PGID=1000
 WORKSPACE_CHROME_DRIVER_VERSION=2.32

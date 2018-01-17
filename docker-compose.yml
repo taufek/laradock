@@ -7,9 +7,81 @@ services:
     applications:
       image: tianon/true
 
+### Laravel-Ubuntu ####
+    laravel-ubuntu:
+      build:
+        context: ./laravel-ubuntu
+        dockerfile: "Dockerfile"
+      entrypoint: /root/entrypoint.sh
+      ports:
+        - '80:80'
+      volumes_from:
+        - applications
+      volumes:
+        - ./logs/laravel-ubuntu/:/var/log/nginx
+        - ./laravel-ubuntu/sites/:/etc/nginx/sites-enabled
+        - ./laravel-ubuntu/entrypoint.sh:/root/entrypoint.sh
+        # - ${APPLICATION}:/var/www
+
+### NodeJs ####
+    nodejs:
+      build:
+        # context: ./nodejs
+        context: ./laravel-ubuntu
+        dockerfile: "Dockerfile"
+      environment:
+        - NODE_ENV=development
+      volumes_from:
+        - applications
+      volumes:
+        - ./nodejs/entrypoint.sh:/entrypoint.sh
+      tty: true
+      networks:
+        - frontend
+        - backend
+      working_dir: ${NODEJS_WORK_DIR}
+      entrypoint: bash -c "/entrypoint.sh"
+
+### Xenial ####
+    xenial:
+      build:
+        context: ./xenial
+        dockerfile: "Dockerfile"
+      volumes_from:
+        - applications
+      # volumes:
+      #   - ${APPLICATION}:/var/www
+      extra_hosts:
+        - "dockerhost:${DOCKER_HOST_IP}"
+      ports:
+        - "${WORKSPACE_SSH_PORT}:22"
+      tty: true
+      networks:
+        - frontend
+        - backend
+
+### Pipeline ####
+    pipeline:
+      build:
+        context: ./pipeline
+        dockerfile: "Dockerfile"
+      volumes_from:
+        - applications
+      # volumes:
+      #   - ${APPLICATION}:/var/www
+      extra_hosts:
+        - "dockerhost:${DOCKER_HOST_IP}"
+      ports:
+        - "${WORKSPACE_SSH_PORT}:22"
+      tty: true
+      networks:
+        - frontend
+        - backend
+
 ### Workspace Utilities Container ###########################
 
     workspace:
+      image: ${WORKSPACE_IMAGE_NAME}
       build:
         context: ./workspace
         args:
@@ -43,6 +115,8 @@ services:
           - INSTALL_DUSK_DEPS=${WORKSPACE_INSTALL_DUSK_DEPS}
           - INSTALL_PG_CLIENT=${WORKSPACE_INSTALL_PG_CLIENT}
           - INSTALL_SWOOLE=${WORKSPACE_INSTALL_SWOOLE}
+          - INSTALL_MYSQL_CLIENT=${WORKSPACE_INSTALL_MYSQL_CLIENT}
+          - INSTALL_GEM=${WORKSPACE_INSTALL_GEM}
           - PUID=${WORKSPACE_PUID}
           - PGID=${WORKSPACE_PGID}
           - CHROME_DRIVER_VERSION=${WORKSPACE_CHROME_DRIVER_VERSION}
@@ -54,6 +128,9 @@ services:
         dockerfile: "Dockerfile-${PHP_VERSION}"
       volumes_from:
         - applications
+      volumes:
+        - "${HOME}/.ssh/taufekpbww_id_rsa:/root/.ssh/id_rsa"
+        # - ${APPLICATION}:/var/www
       extra_hosts:
         - "dockerhost:${DOCKER_HOST_IP}"
       ports:
@@ -98,6 +175,7 @@ services:
         - applications
       volumes:
         - ./php-fpm/php${PHP_VERSION}.ini:/usr/local/etc/php/php.ini
+        # - ${APPLICATION}:/var/www
       expose:
         - "9000"
       depends_on:
@@ -119,6 +197,8 @@ services:
           - INSTALL_PGSQL=${PHP_WORKER_INSTALL_PGSQL}
       volumes_from:
         - applications
+      # volumes:
+      #   - ${APPLICATION}:/var/www
       depends_on:
         - workspace
       extra_hosts:
@@ -137,6 +217,7 @@ services:
       volumes_from:
         - applications
       volumes:
+        # - ${APPLICATION}:/var/www
         - ${NGINX_HOST_LOG_PATH}:/var/log/nginx
         - ${NGINX_SITES_PATH}:/etc/nginx/sites-available
       ports:
@@ -172,6 +253,7 @@ services:
       volumes_from:
         - applications
       volumes:
+        # - ${APPLICATION}:/var/www
         - ${APACHE_HOST_LOG_PATH}:/var/log/apache2
         - ${APACHE_SITES_PATH}:/etc/apache2/sites-available
       ports:
@@ -189,6 +271,8 @@ services:
       build: ./hhvm
       volumes_from:
         - applications
+      # volumes:
+        # - ${APPLICATION}:/var/www
       expose:
         - "9000"
       depends_on:
@@ -681,6 +765,8 @@ services:
         context: ./aws
       volumes_from:
         - applications
+      # volumes:
+      #   - ${APPLICATION}:/var/www
       depends_on:
         - workspace
       tty: true

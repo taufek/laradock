@@ -69,7 +69,7 @@ alias migrate="php artisan migrate"
 alias refresh="php artisan migrate:refresh"
 alias rollback="php artisan migrate:rollback"
 alias seed="php artisan:seed"
-alias serve="php artisan serve --quiet &"
+alias serve="php artisan serve --env=dusk.local --quiet &"
 
 alias phpunit="./vendor/bin/phpunit"
 alias pu="phpunit"
@@ -107,6 +107,9 @@ alias gd="git --no-pager diff"
 alias git-revert="git reset --hard && git clean -df"
 alias gs="git status"
 alias whoops="git reset --hard && git clean -df"
+
+# Xvfb
+alias xvfb="Xvfb -ac :0 -screen 0 1024x768x16 &"
 
 # Create a new directory and enter it
 function mkd() {
