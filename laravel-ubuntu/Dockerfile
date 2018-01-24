@@ -62,6 +62,6 @@ RUN apt-get update -yqq && \
 
 RUN apt-get install -y nodejs
 
-RUN npm install -y -g gulp vue-cli grunt-cli webpack jest jest-cli
+RUN npm install -y -g gulp vue-cli grunt-cli webpack jest@20.0.4 jest-cli
 
 RUN npm rebuild node-sass --force
