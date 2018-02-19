@@ -20,5 +20,5 @@ syncs:
       'printbox-poc',
       'dusk-test',
       'dusk',
-      'blog'
-    ] # ignored directories
+      'blog',
+    ]
