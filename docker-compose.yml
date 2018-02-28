@@ -40,7 +40,9 @@ services:
         - frontend
         - backend
       working_dir: ${NODEJS_WORK_DIR}
-      entrypoint: bash -c "/entrypoint.sh"
+      ports:
+        - "3000:3000"
+      command: bash -c "/entrypoint.sh"
 
 ### Xenial ####
     xenial:
