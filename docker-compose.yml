@@ -31,7 +31,7 @@ services:
         dockerfile: "Dockerfile"
       environment:
         - NODE_ENV=${NODE_ENV}
-        - NODE_WATCH_AGGREGRATION_TIMEOUT=${NODE_WATCH_AGGREGRATION_TIMEOUT}
+        - NODE_WATCH_AGGREGATION_TIMEOUT=${NODE_WATCH_AGGREGATION_TIMEOUT}
         - NODE_WATCH_POLL=${NODE_WATCH_POLL}
       volumes_from:
         - applications
