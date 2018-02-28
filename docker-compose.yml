@@ -29,8 +29,6 @@ services:
         # context: ./nodejs
         context: ./laravel-ubuntu
         dockerfile: "Dockerfile"
-      environment:
-        - NODE_ENV=development
       volumes_from:
         - applications
       volumes:
