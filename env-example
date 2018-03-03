@@ -5,7 +5,7 @@
 ### Application Path ###################################################################################################
 # Point to your code, will be available at `/var/www`.
 
-APPLICATION=../
+APPLICATION=../www/
 
 ### PHP Version ########################################################################################################
 # Select a PHP version of the Workspace and PHP-FPM containers (Does not apply to HHVM). Accepted values: 71 - 70 - 56
@@ -58,7 +58,7 @@ CHANGE_SOURCE=false
 
 ### NODEJS #############################################################################################################
 
-NODEJS_WORK_DIR=/var/www/frontend-app
+NODEJS_WORK_DIR=/apps/frontend
 NODE_APP=frontend
 NODE_ENV=development
 NODE_WATCH_AGGREGATION_TIMEOUT=1000
