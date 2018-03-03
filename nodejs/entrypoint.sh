@@ -2,9 +2,9 @@
 
 if test -d node_modules;
 then
-  echo node_modules_exists ;
+  echo node modules exists ;
 else
-  cp -a /tmp/node_modules /usr/src/app/website;
+  echo node modules does not exists;
 fi
 
 echo npm install
