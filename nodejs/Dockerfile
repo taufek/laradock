@@ -6,7 +6,9 @@ RUN apt-get update -yqq && \
 
 RUN npm install -g gulp vue-cli grunt-cli webpack jest@20.0.4 jest-cli
 
-# RUN npm rebuild node-sass --force
+# WORKDIR /tmp
+# COPY package.json /tmp/
+# RUN npm config set registry http://registry.npmjs.org/ && npm install
 
 WORKDIR /app
 
