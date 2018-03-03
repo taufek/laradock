@@ -59,6 +59,7 @@ CHANGE_SOURCE=false
 ### NODEJS #############################################################################################################
 
 NODEJS_WORK_DIR=/var/www/frontend-app
+NODE_APP=frontend
 NODE_ENV=development
 NODE_WATCH_AGGREGATION_TIMEOUT=1000
 NODE_WATCH_POLL=2000

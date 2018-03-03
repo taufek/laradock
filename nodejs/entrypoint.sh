@@ -7,10 +7,14 @@ else
   cp -a /tmp/node_modules /usr/src/app/website;
 fi
 
+echo npm install
 npm install
 
-# cd /var/www/shipping
-# php artisan serve --quiet &
+echo starting local shipping service
+cd /var/www/shipping
+php artisan serve --quiet &
 
-cd /var/www/frontend
+
+echo starting frontend
+cd /apps/frontend
 npm start
