@@ -6,3 +6,4 @@
 .docker-sync
 /jenkins/jenkins_home
 docker-compose.override.yml
+/nodejs/*/node_modules
