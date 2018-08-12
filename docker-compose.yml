@@ -135,7 +135,8 @@ services:
         - applications
       volumes:
         - "${HOME}/.ssh/taufekpbww_id_rsa:/root/.ssh/id_rsa"
-        # - ${APPLICATION}:/var/www
+        - ./workspace/www/backend-laravel/node_modules:/var/www/backend-laravel/node_modules:cached
+        - ./workspace/www/backend-laravel/vendor:/var/www/backend-laravel/vendor:cached
       extra_hosts:
         - "dockerhost:${DOCKER_HOST_IP}"
       ports:
